@@ -25,6 +25,8 @@ public class Student {
     @ManyToMany(mappedBy = "students")
     private Set<Class> classes = new HashSet<>();
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<Score> scores;
 
     public String getName() {
         return name;

@@ -24,8 +24,6 @@ public class SiaHibernateOrmApplication {
         teacher1.getStudentSupervised().add(student2);
         session.save(teacher1);
 
-        System.out.println("Tss");
-
         Teacher teacher2 = new Teacher();
         teacher2.setName("Kento Nanami");
         session.save(teacher2);
@@ -40,7 +38,6 @@ public class SiaHibernateOrmApplication {
         student2.setName("Yuji Itadori");
         student2.setSupervisor(teacher1);
         session.save(student2);
-//
 
 
 //        Create Course Entity
@@ -68,6 +65,14 @@ public class SiaHibernateOrmApplication {
         class1.getStudents().add(student2);
         class1.getStudents().add(student1);
         session.save(class1);
+
+
+//        Entity Score
+        Score score1 = new Score();
+        score1.setStudent(student1);
+        score1.setClassEntity(class1);
+        score1.setScore(80);
+        session.save(score1);
 
         // Commit the transaction
         session.getTransaction().commit();
