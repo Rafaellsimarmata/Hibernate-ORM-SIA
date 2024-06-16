@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +27,38 @@ public class Student {
     private Set<Class> classes = new HashSet<>();
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<Score> scores;
+    private Set<Score> scores= new HashSet<>();
+
+    public Float getGPA(Integer studentId){
+        Integer totalScore = 0;
+        Integer totalTakenCourse = 0;
+
+
+        for (Score score : scores) {
+            if (score.getStudent().getStudent_id().equals(studentId)) {
+                totalTakenCourse += 1;
+                totalScore +=  score.getScore();
+            }
+        }
+
+        return (float) (totalScore / totalTakenCourse) / 25;
+    }
+
+
+    public void printStudyTranscript(Integer studentId){
+        System.out.print("Course Code   |");
+        System.out.print("Course Name   |");
+        System.out.println("Score |");
+        for (Score score : scores) {
+            if (score.getStudent().getStudent_id().equals(studentId)) {
+                System.out.print(score.getCourse().getCourseCode() + "    |");
+                System.out.print(score.getCourse().getCourseName() + "    |");
+                System.out.println(score.getScore() + " |");
+            }
+        }
+    }
+
+
 
     public String getName() {
         return name;
