@@ -19,6 +19,9 @@ public class Course {
     @Column (name = "course_name", nullable = false)
     private String courseName;
 
+    @Column (name = "course_code", nullable = false)
+    private String courseCode;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacherTaught;
 
@@ -44,5 +47,13 @@ public class Course {
 
     public Integer getCourse_id() {
         return course_id;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

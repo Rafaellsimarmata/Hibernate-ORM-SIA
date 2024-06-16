@@ -19,8 +19,8 @@ public class Score {
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "class_id")
-    private Class classEntity;
+    @JoinColumn(name = "course_id")
+    private Course course;
 
 
     public Integer getScore_id() {
@@ -43,11 +43,12 @@ public class Score {
         this.score = score;
     }
 
-    public Class getClassEntity() {
-        return classEntity;
+
+    public Course getCourse() {
+        return course;
     }
 
-    public void setClassEntity(Class classEntity) {
-        this.classEntity = classEntity;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
